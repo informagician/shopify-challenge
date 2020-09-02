@@ -20,10 +20,12 @@ const Result = props => {
             {props.search.length > 0 ? (
                 <>
                     <h2>Results for "{props.search}"</h2>
+                    {/* CHECK IF THERE ARE MOVIES FOR GIVEN SEARCH KEYWORD - IF NOT THEN NO RESULTS */}
                     {props.results.Response && props.results.Response === 'False' ? (
                         <p>No Results Found</p>
                     ) : (
                         <ul>
+                            {/* IF RESULTS FOUND */}
                             {props.results.Search.map(item => (
                                 <li key={item.imdbID}>
                                     <div className="row movie">
@@ -37,7 +39,8 @@ const Result = props => {
                                                 type="button" 
                                                 value="Nominate" 
                                                 onClick={() => handelNominate(item)}
-                                                disabled={props.cache.includes(item.imdbID) && true}
+                                                // DISABLE BUTTON IF IMDB ID FOUND IN CACHE STATE OR REACHED 5 NOMINEES
+                                                disabled={(props.cache.includes(item.imdbID) || props.nomination.length === 5) && true}
                                             />
                                         </div>
                                     </div>

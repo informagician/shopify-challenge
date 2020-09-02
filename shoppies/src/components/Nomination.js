@@ -18,6 +18,7 @@ const Nomination = props => {
         <div className="card half">
             <h2>My Nominations</h2>
             <ul>
+                {/* DISPLAY LIST OF NOMINEES */}
                 {props.nomination.map(item => (
                     <li key={item.imdbID}>
                         <div className="row movie">
