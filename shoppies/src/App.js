@@ -37,7 +37,7 @@ function App() {
     }
   },[nomination])
 
-  console.log(nomination)
+  console.log(process.env.REACT_APP_API_KEY)
   return (
     <div className="container">
       <h1>The Shoppies</h1>
