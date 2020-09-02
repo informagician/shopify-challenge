@@ -12,13 +12,32 @@ function App() {
   const [ nomination, setNomination ] = useState([])
   const [ cache, setCache ] = useState([])
 
+
+  // RETRIEVING MOVIES 
   useEffect(() => {
-    axios.get(`http://www.omdbapi.com/?s=${search}&type=movie&apikey=71ec9864`)
+    axios.get(`http://www.omdbapi.com/?s=${search}&type=movie&apikey=` + process.env.REACT_APP_API_KEY)
       .then(res => setResults(res.data))
       .catch(err => console.log(err))
   },[search])
 
-  console.log(cache)
+  useEffect(() => {
+    let storedNominations = localStorage.getItem('nomination')
+    let retrievedNominations = JSON.parse(storedNominations)
+    if(retrievedNominations && retrievedNominations.length > 0){
+      setNomination(retrievedNominations)
+      setCache(
+        retrievedNominations.map(movie => movie.imdbID)
+      )
+    }
+  },[])
+
+  useEffect(() => {
+    if(nomination.length >= 0){
+      localStorage.setItem('nomination',JSON.stringify(nomination));
+    }
+  },[nomination])
+
+  console.log(nomination)
   return (
     <div className="container">
       <h1>The Shoppies</h1>
