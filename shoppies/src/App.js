@@ -20,7 +20,7 @@ function App() {
 
   // RETRIEVING MOVIES FROM API
   useEffect(() => {
-    axios.get(`http://www.omdbapi.com/?s=${search}&type=movie&apikey=` + process.env.REACT_APP_API_KEY)
+    axios.get(`https://www.omdbapi.com/?s=${search}&type=movie&apikey=` + process.env.REACT_APP_API_KEY)
       .then(res => setResults(res.data))
       .catch(err => console.log(err))
   },[search])
@@ -44,7 +44,6 @@ function App() {
     }
   },[nomination])
 
-  console.log(process.env.REACT_APP_API_KEY)
   return (
     <div className="container">
       <h1>The Shoppies</h1>

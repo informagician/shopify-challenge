@@ -12,8 +12,6 @@ const Nomination = props => {
         )
     }
 
-    console.log(props.nomination)
-
     return (
         <div className="card half">
             <h2>My Nominations</h2>
