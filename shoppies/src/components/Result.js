@@ -30,7 +30,12 @@ const Result = props => {
                                 <li key={item.imdbID}>
                                     <div className="row movie">
                                         <div className="col">
-                                            <img src={item.Poster} alt={item.Title} />
+                                            {/* IF POSTER NOT AVAILABLE DISPLAY SHOPPIES.PNG PLACEHOLDER IMAGE */}
+                                            {item.Poster !== 'N/A' ? (
+                                                <img src={item.Poster} alt={item.Title} />
+                                            ) : (
+                                                <img src="./shoppies.png" alt={item.Title} />
+                                            )}  
                                         </div>
                                         <div className="col">
                                             {item.Title} <br />
